@@ -1,19 +1,18 @@
 import java.io.*;
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.Random;
 
 /**
  * Decipher code programmed to decipher basic Vignere ciphers
  */
 public class decipher{
-    // Constructor variables
+    // constructor variables
     File ciphertext;
     File plaintext;
     File proof = new File("tess26.txt");
     int key_len;
     int[] key;
-    // Vigenere Cipher
+    // vigenere cipher
     double[] alphabetFreq = new double[26];
     String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 
@@ -65,9 +64,7 @@ public class decipher{
             int[] aCount = new int[26];
             int str = 0;
 
-            /*============================================
-                        COUNT OCCURANCES 
-            ==============================================*/
+            // count occurances
             for(int x = 0; ;x++){
                 if(str >= s.length()){
                     break;
@@ -85,9 +82,7 @@ public class decipher{
                 str++;
             }
         
-            /*=================================================
-                        CALCULATE SUM OF OCCURANCES 
-            ===================================================*/
+            // calculate sum of occurances
             int cSum = 0;               // sum of count arr
             double[] cFreq = new double[26];
     
@@ -98,10 +93,7 @@ public class decipher{
                 cFreq[x] = (double) aCount[x] / cSum;
             }
 
-            /*=================================================
-                        CALCULATE CESAR SHIFT 
-            ===================================================*/
-
+            // calculate Ceasar Shift
             double hVal = 0;            // highest value
             int hShift = 0;             // highest val shift
 
@@ -175,7 +167,7 @@ public class decipher{
         sc.close();
 
         int[] counter = new int[6];            // amount of data in columns
-        int c = 0;                               // hard coded rows being different sizes
+        int c = 0;                             // hard coded rows being different sizes
 
         if(key_len == 4){
             c = 210;
@@ -201,18 +193,18 @@ public class decipher{
 
 
     public static void main(String[] args) throws IOException{
-        File e3 = new File("cexercise1.txt");
-        File e3a = new File("exercise1.txt");
+        File e3 = new File("exercises/ciphertext1.txt");
+        File e3a = new File("exercises/plaintext1.txt");
         decipher d3 = new decipher(e3, e3a, 6);
         d3.vigenereSolve();
         
-        File e4 = new File("cexercise2.txt");
-        File e4a = new File("exercise2.txt");
+        File e4 = new File("exercises/ciphertext2.txt");
+        File e4a = new File("exercises/plaintext2.txt");
         decipher d4 = new decipher(e4, e4a, 6);
         d4.vigenereSolve();
 
-        File e5 = new File("cexercise3.txt");
-        File e5a = new File("exercise3.txt");
+        File e5 = new File("exercises/ciphertext3.txt");
+        File e5a = new File("exercises/plaintext3.txt");
         decipher d5 = new decipher(e5, e5a, 5);
         d5.simpleTransposition();
     }
